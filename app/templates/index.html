@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro%}
 
 {% block content %}
 <div class="container">
-</div>
-<div class="container">
-<h1>News Sources</h1>
- <div class="row">
-   {% for site in sites %}
-   <div class="col-md-4">
-      <h3>{{ site.name}}</h3>
-      <p>{{ site.description}}</p>
-      <p>Category: <i>{{ site.category}}</i></p>
-      <a href="{{site.url}}" class="btn btn-primary"> {{site.name}} Website</a>
-      <a href="/articles/{{site.id}}" class = "btn btn-success">Go To Articles</a>
+  <h1>News Sources</h1>
+  
+  {% for site in sites %}
+  <div class="row">
+    <div class="col-md-7">
+      <ul class="list-unstyled">
+        <li class="card card-body mb-2">
+          <h3>{{ site.name}}</h3>
+          <p>{{ site.description}}</p>
+          <!-- <a href="{{site.url}}" class="btn btn-primary"> Visit Website</a> -->
+          <a href="/articles/{{site.id}}" class = "btn btn-success">View More</a>
+        </li>
+      </ul>
+    </div>
   </div>
-    {% endfor %}
-  </div>
+  {% endfor %}
 </div>
+
 {% endblock %}
