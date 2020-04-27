@@ -8,8 +8,9 @@
     <div class="card-body">
       <a href='{{article.url}}'><h3 class="card-title"> {{ article.title}}</h3></a>
       <p class="card-text">{{article.description}}</p>
-      <p> <b>Written by:</b> {{article.author}} <span class= "sources"><b>Date of Publication: </b><i>{{ article.publishedAt}}</i></span></p> 
+      <p> <b>Written by:</b> {{article.author.title()}} <span class= "sources"><b>Date of Publication: </b><i>{{ article.publishedAt }}</i></span></p> 
     </div>
+    <hr>
     {% endfor %}
   </div>
 </div>

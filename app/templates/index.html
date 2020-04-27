@@ -3,11 +3,23 @@
 {% block content %}
 
 <div class="container">
-  <h1 class="title">News Sources</h1>
-  
-  {% for site in sites %}
   <div class="row">
-    <div class="col-md-5">
+    <div id="sources" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner"style="font-size:15px;">
+        {% for site in sites %}
+        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+          <p style="padding-left:5px;text-align:center;"><span>{{site.name}}</span>{{site.description}} 
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">  
+   <div class="col-md-7">
+    <h1 class="title text-center">News Sources</h1>
+      {% for site in sites %}
       <ul class="list-unstyled">
         <li>
           <h3 class="title">{{ site.name}}</h3>
@@ -19,10 +31,22 @@
         </li>
       </ul>
       <hr>
+      {% endfor %}
+    </div>
+    <div class="col-md-1"></div>  
+    <div class="col-md-4">
+      <div class="content-section">
+        <h3><b>Latest Stories</b></h3>
+        <p class='text-muted'>You can put any information here you'd like.
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-light">Latest News</li>
+            <li class="list-group-item list-group-item-light">Favorites</li>
+            <li class="list-group-item list-group-item-light">Calendars</li>
+          </ul>
+        </p>
+      </div>
     </div>
   </div>
-  {% endfor %}
-  
 </div>
 
 <footer class="page-footer">
