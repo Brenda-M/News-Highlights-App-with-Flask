@@ -1,5 +1,5 @@
 import urllib.request,json
-from .models import Sources, Articles
+from .models import Sources, Articles, Topic
 
 #Fetching the API Key
 api_key = None
@@ -16,7 +16,7 @@ def get_source():
   '''
   Function that gets the json response to our url request
   '''
-  get_source_url = base_url.format('sources', api_key)
+  get_source_url = base_url.format('sources', api_key) + '&language=en'
 
   with urllib.request.urlopen(get_source_url) as url:
     get_source_data = url.read()
@@ -50,10 +50,12 @@ def process_results(source_list):
     language = source_item.get('language')
     country = source_item.get('country')
     url = source_item.get('url')
+    
+    if name:
+      source_object = Sources(id,name,description,category,language,country, url)
+      sources_results.append(source_object)
 
-    sources_results.append(Sources(id,name,description,category,language,country, url))
-
-  return source_list
+  return sources_results
 
 def get_articles(id):
   get_articles_url = base_url.format('everything',api_key) + '&sources='+ id
@@ -84,56 +86,94 @@ def process_articles_results(articles_list):
     publishedAt = article_item.get('publishedAt')
     content = article_item.get('content')
     url = article_item.get('url')
+    urlToImage = article_item.get('urlToImage')
 
-    site_results.append(Articles(author,title,  description, publishedAt, content, url))
+    if title:
+      article_object = Articles(author, title, description, publishedAt, content, url, urlToImage)
+      site_results.append(article_object)
 
   return site_results
+ 
+def get_topic(topic_news):
+  get_topic_url = base_url.format('everything',api_key) + '&q=' + topic_news
 
-# def search_news(topic):
-#   search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(topic, api_key)
+  with urllib.request.urlopen(get_topic_url) as url:
+    get_topic_data = url.read()
+    get_topic_response = json.loads(get_topic_data)
 
-#   with urllib.request.urlopen(search_news_url) as url:
-#     search_news_data = url.read()
-#     search_response = json.loads(search_news_data)
+    news_topic_results = None
 
-#     search_results = None
+  if get_topic_response['articles']:
+    topic_results_list = get_topic_response['articles']
+    news_topic_results = process_topic_results(topic_results_list)
+      
+  return news_topic_results
 
-#     if search_response['articles']:
-#       search_list = search_response['articles']
-#       search_results = process_search_results(search_list)
+def process_topic_results(topic_list):
+  '''
+  Function that process the topics and transforms them to a list of objects
+  '''
 
-#   return search_results
+  topic_results = []
+  for topic_item in topic_list:
+    author = topic_item.get('author')
+    title = topic_item.get('title')
+    description = topic_item.get('description')
+    url = topic_item.get('url')
+    urlToImage = topic_item.get('urlToImage')
+    publishedAt = topic_item.get('publishedAt')
 
-# def get_topic(topic_news):
-#   get_topic_url = base_url.format('everything', api_key) + '&q=' + topic_news
+    topic_results.append(Topic(author,title,description,url,urlToImage,publishedAt))
 
-#   with urllib.request.urlopen(get_topic_url) as url:
-#     get_topic_data = url.read()
-#     get_topic_response = json.loads(get_topic_data)
+  return topic_list
 
-#     news_topic_results = None
+def search_news(topic_news):
+  search_news_url = 'https://newsapi.org/v2/everything?apiKey={}&q={}'.format(api_key,topic_news)
 
-#     if get_topic_response['articles']:
-#       topic_results_list = get_topic_response['articles']
-#       news_topic_results = process_topic_results(topic_results_list)
+  with urllib.request.urlopen(search_news_url) as url:
+    search_news_data = url.read()
+    search_news_response = json.loads(search_news_data)
 
-#   return news_topic_results
+    search_news_results = None
 
-# def process_topic_results(topic_list):
-#   '''
-#   Function that process the topics and transforms them to a list of objects
-#   '''
 
-#   topic_results = []
-#   for topic_item in topic_list:
-#     author = topic_item.get('author')
-#     title = topic_item.get('title')
-#     description = topic_item.get('description')
-#     url = topic_item.get('url')
-#     urlToImage = topic_item.get('urlToImage')
-#     publishedAt = topic_item.get('publishedAt')
+    if search_news_response['articles']:
+      search_news_list = search_news_response['articles']
+      search_news_results = process_topic_results(search_news_list)
 
-#     topic_results.append(Topic(author,title,description,url,urlToImage,publishedAt))
+  return search_news_results
 
-#   return topic_list
-  
+def process_headline_results(headline_list):
+  '''
+  Function that process the headlines and transforms them to a list of objects
+  '''
+
+  headline_results = []
+  for headline_item in headline_list:
+    author = headline_item.get('author')
+    title = headline_item.get('title')
+    description = headline_item.get('description')
+    url = headline_item.get('url')
+    urlToImage = headline_item.get('urlToImage')
+    publishedAt = headline_item.get('publishedAt')
+
+    headline_results.append(Headline(author,title,description,url,urlToImage,publishedAt))
+
+  return headline_list
+
+
+def headline_news(topic):
+  headline_news_url = 'https://newsapi.org/v2/top-headlines?apiKey={}&category={}'.format(api_key,topic)
+
+  with urllib.request.urlopen(headline_news_url) as url:
+    headline_news_data = url.read()
+    headline_news_response = json.loads(headline_news_data)
+
+    headline_news_results = None
+
+
+    if headline_news_response['articles']:
+      headline_news_list = headline_news_response['articles']
+      headline_news_results = process_headline_results(headline_news_list)
+
+  return headline_news_results

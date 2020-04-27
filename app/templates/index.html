@@ -3,19 +3,6 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
-    <div id="sources" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner"style="font-size:15px;">
-        {% for site in sites %}
-        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-          <p style="padding-left:5px;text-align:center;"><span>{{site.name}}</span>{{site.description}} 
-          </p>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
   <div class="row">  
    <div class="col-md-7">
     <h1 class="title text-center">News Sources</h1>
@@ -24,7 +11,7 @@
         <li>
           <h3 class="title">{{ site.name}}</h3>
           <p>{{ site.description}}</p>
-          <p><b>Language:</b> {{ site.language }}<span>
+          <p><b>Country:</b> {{ site.country }}<span>
             <a href="/articles/{{site.id}}" class = "sources">View More</a>
             </span>
           </p>
@@ -37,11 +24,10 @@
     <div class="col-md-4">
       <div class="content-section">
         <h3><b>Latest Stories</b></h3>
-        <p class='text-muted'>You can put any information here you'd like.
           <ul class="list-group">
             <li class="list-group-item list-group-item-light">Latest News</li>
-            <li class="list-group-item list-group-item-light">Favorites</li>
-            <li class="list-group-item list-group-item-light">Calendars</li>
+            <li class="list-group-item list-group-item-light">Headlines</li>
+            <li class="list-group-item list-group-item-light">Join Us</li>
           </ul>
         </p>
       </div>

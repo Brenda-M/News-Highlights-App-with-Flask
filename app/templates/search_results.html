@@ -1,20 +1,24 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <h2> News articles for {{t}}</h2>
-    <h3> Found {{ news_topics | count }} matches. </h3>
-    <hr>
-    {% for news in news_topics %}
-    <div class="col-md-4">
-        <h3>{{ news.author}}</h3>
+  <div class="container">
+    <div class="row">
+      <h3> {{ news_topics | count }} matches found for {{t}} </h3>
+      <hr>
+      {% for news in news_topics %}
+      <div class="col-md-4">
           <img src="{{news.urlToImage}}" alt="News photo" height="200px", width="350px">
-        <p>{{ news.description}}</p>
-        <a href="{{news.url}}" class="btn btn-info">Read More</a>
-      </div>
-      {% endfor %}
+          <p>{{ news.description}}</p>
+          <p><b>Written By:</b> {{ news.author }} <span class="sources"><a href="{{news.url}}">Read More</a></span></p>
+          <hr>
+       </div>
+       {% endfor %}
+    </div>
   </div>
-  </div>
+  <footer class="page-footer">
+    <div class="footer-copyright text-center">
+      <h6>© 2020 Copyright: Muthoni Njuguna</h6>
+    </div>
+  </footer>
 
 {% endblock %}

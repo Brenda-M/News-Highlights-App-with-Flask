@@ -1,17 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
 
 {% block content %}
-<div class="container">
-<h1 class ="text-center">News</h1>
-  <div class="card">
-    {% for article in details %}
-    <div class="card-body">
-      <a href='{{article.url}}'><h3 class="card-title"> {{ article.title}}</h3></a>
-      <p class="card-text">{{article.description}}</p>
-      <p> <b>Written by:</b> {{article.author.title()}} <span class= "sources"><b>Date of Publication: </b><i>{{ article.publishedAt }}</i></span></p> 
+  <div class="container">
+    <div class="row">
+      {% for article in details %}
+      <div class="col-md-4">
+          <img src="{{article.urlToImage}}" alt="News photo" height="200px", width="350px">
+          <h4><b>{{article.title}}</b></h4>
+          <p>{{ article.description}}</p>
+          <p><b>Article By:</b> {{ article.author.title()}} <span class="sources"><a href="{{article.url}}">Read More</a></span></p>
+          <hr>
+       </div>
+       {% endfor %}
     </div>
-    <hr>
-    {% endfor %}
   </div>
-</div>
+  <footer class="page-footer">
+    <div class="footer-copyright text-center">
+      <h6>© 2020 Copyright: Muthoni Njuguna</h6>
+    </div>
+  </footer>
 {% endblock %}

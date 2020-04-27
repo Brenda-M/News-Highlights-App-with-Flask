@@ -17,10 +17,26 @@ class Articles:
   Defines article objects
 
   '''
-  def __init__(self, author, title, description, publishedAt, content, url):
+  def __init__(self, author, title, description, publishedAt, content, url, urlToImage):
     self.author = author
     self.title = title
     self.description = description
     self.publishedAt = publishedAt
     self.content = content
     self.url = url
+    self.urlToImage = urlToImage
+
+class Topic:
+  '''
+  Topic class to define Topic objects
+  '''
+
+  def __init__(self,author,title,description,url,urlToImage,publishedAt):
+
+    self.author = author
+    self.title = title
+    self.description = description
+    self.url = url
+    self.urlToImage = urlToImage
+    self.publishedAt = publishedAt
+
