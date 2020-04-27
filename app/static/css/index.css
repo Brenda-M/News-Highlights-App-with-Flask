@@ -1,0 +1,24 @@
+body{
+  font-family: 'Noto Serif', serif;
+}
+
+.sources{
+  float: right;
+}
+
+.title{
+  font-weight: bold;
+  font-family: 'Bree Serif', serif;
+}
+
+hr{
+  height: 1px;
+}
+
+.page-footer{
+  background-color: rgb(243, 141, 170);
+  font-weight: bold;
+  color: black;
+  height: 20vh;
+  padding-top: 50px;
+}
