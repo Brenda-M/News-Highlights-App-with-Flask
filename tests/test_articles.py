@@ -10,7 +10,7 @@ class ArticlesTest(unittest.TestCase):
     '''
     Set up method that will run before every test
     '''
-    self.new_article = Articles('Catie', 'Travelex Reportedly Paid Ransomware Hackers 285 Bitcoin', 'Following a ransomware attack against foreign exchange company Travelex earlier this year', '2020-04-09T21:40:00Z', 'Following a ransomware attack against foreign exchange company Travelex earlier this year', 'https://gizmodo.com/travelex-reportedly-paid-ransomware-hackers-285-bitcoin-1842782514', 'https://abcnews.go.com')
+    self.new_article = Articles('Catie', 'Travelex Reportedly Paid Ransomware Hackers 285 Bitcoin', 'Following a ransomware attack against foreign exchange company Travelex earlier this year', '2020-04-09T21:40:00Z', 'Following a ransomware attack against foreign exchange company Travelex earlier this year', 'https://gizmodo.com/travelex-reportedly-paid-ransomware-hackers-285-bitcoin-1842782514')
 
   
   def test_instance(self):

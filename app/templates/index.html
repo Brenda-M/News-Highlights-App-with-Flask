@@ -1,24 +1,35 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macro%}
 
 {% block content %}
+
 <div class="container">
-  <h1>News Sources</h1>
+  <h1 class="title">News Sources</h1>
   
   {% for site in sites %}
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-5">
       <ul class="list-unstyled">
-        <li class="card card-body mb-2">
-          <h3>{{ site.name}}</h3>
+        <li>
+          <h3 class="title">{{ site.name}}</h3>
           <p>{{ site.description}}</p>
-          <!-- <a href="{{site.url}}" class="btn btn-primary"> Visit Website</a> -->
-          <a href="/articles/{{site.id}}" class = "btn btn-success">View More</a>
+          <p><b>Language:</b> {{ site.language }}<span>
+            <a href="/articles/{{site.id}}" class = "sources">View More</a>
+            </span>
+          </p>
         </li>
       </ul>
+      <hr>
     </div>
   </div>
   {% endfor %}
+  
 </div>
 
+<footer class="page-footer">
+  <div class="footer-copyright text-center">
+    <h6>© 2020 Copyright: Muthoni Njuguna</h6>
+  </div>
+</footer>
+
 {% endblock %}
+

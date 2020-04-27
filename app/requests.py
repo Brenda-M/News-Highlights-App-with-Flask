@@ -89,18 +89,51 @@ def process_articles_results(articles_list):
 
   return site_results
 
-def search_news(topic):
-  search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(topic, api_key)
+# def search_news(topic):
+#   search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(topic, api_key)
 
-  with urllib.request.urlopen(search_news_url) as url:
-    search_news_data = url.read()
-    search_response = json.loads(search_news_data)
+#   with urllib.request.urlopen(search_news_url) as url:
+#     search_news_data = url.read()
+#     search_response = json.loads(search_news_data)
 
-    search_results = None
+#     search_results = None
 
-    if search_response['articles']:
-      search_list = search_response['articles']
-      search_results = process_search_results(search_list)
+#     if search_response['articles']:
+#       search_list = search_response['articles']
+#       search_results = process_search_results(search_list)
 
-  return search_results
-    
+#   return search_results
+
+# def get_topic(topic_news):
+#   get_topic_url = base_url.format('everything', api_key) + '&q=' + topic_news
+
+#   with urllib.request.urlopen(get_topic_url) as url:
+#     get_topic_data = url.read()
+#     get_topic_response = json.loads(get_topic_data)
+
+#     news_topic_results = None
+
+#     if get_topic_response['articles']:
+#       topic_results_list = get_topic_response['articles']
+#       news_topic_results = process_topic_results(topic_results_list)
+
+#   return news_topic_results
+
+# def process_topic_results(topic_list):
+#   '''
+#   Function that process the topics and transforms them to a list of objects
+#   '''
+
+#   topic_results = []
+#   for topic_item in topic_list:
+#     author = topic_item.get('author')
+#     title = topic_item.get('title')
+#     description = topic_item.get('description')
+#     url = topic_item.get('url')
+#     urlToImage = topic_item.get('urlToImage')
+#     publishedAt = topic_item.get('publishedAt')
+
+#     topic_results.append(Topic(author,title,description,url,urlToImage,publishedAt))
+
+#   return topic_list
+  

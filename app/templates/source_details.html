@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1 class ="text-center">News</h1>
+  <div class="card">
+    {% for article in details %}
+    <div class="card-body">
+      <a href='{{article.url}}'><h3 class="card-title"> {{ article.title}}</h3></a>
+      <p class="card-text">{{article.description}}</p>
+      <p> <b>Written by:</b> {{article.author}} <span class= "sources"><b>Date of Publication: </b><i>{{ article.publishedAt}}</i></span></p> 
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

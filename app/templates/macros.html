@@ -1,0 +1,19 @@
+{% macro displaySourceList(source_list) %}
+
+  {% for site in source_list %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <ul class="list-unstyled">
+            <li class="card card-body mb-2">
+              <h3>{{ site.name}}</h3>
+              <p>{{ site.description}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+{% endmacro %}
+
