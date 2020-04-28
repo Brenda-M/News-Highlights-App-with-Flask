@@ -8,8 +8,11 @@
       {% for news in news_topics %}
       <div class="col-md-4">
           <img src="{{news.urlToImage}}" alt="News photo" height="200px", width="350px">
+          <a href="{{news.url}}"><h4><b>{{news.title}}</b></h4></a>
+          <p><b>Written By:</b> {{ news.author }}</p>
+          <p><b>Published on: </b> {{ news.publishedAt}}</p>
           <p>{{ news.description}}</p>
-          <p><b>Written By:</b> {{ news.author }} <span class="sources"><a href="{{news.url}}">Read More</a></span></p>
+          <p><a href="{{news.url}}">Read More</a></p>
           <hr>
        </div>
        {% endfor %}
