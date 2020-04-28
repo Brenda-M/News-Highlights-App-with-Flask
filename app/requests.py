@@ -51,9 +51,9 @@ def process_results(source_list):
     country = source_item.get('country')
     url = source_item.get('url')
     
-    if name:
-      source_object = Sources(id,name,description,category,language,country, url)
-      sources_results.append(source_object)
+
+    source_object = Sources(id,name,description,category,language,country, url)
+    sources_results.append(source_object)
 
   return sources_results
 
@@ -88,9 +88,12 @@ def process_articles_results(articles_list):
     url = article_item.get('url')
     urlToImage = article_item.get('urlToImage')
 
-    if title:
+    if urlToImage:
       article_object = Articles(author, title, description, publishedAt, content, url, urlToImage)
-      site_results.append(article_object)
+    else: 
+      article_object = Articles(author, title, description, publishedAt, content, url)
+
+    site_results.append(article_object)
 
   return site_results
  
@@ -143,37 +146,3 @@ def search_news(topic_news):
 
   return search_news_results
 
-def process_headline_results(headline_list):
-  '''
-  Function that process the headlines and transforms them to a list of objects
-  '''
-
-  headline_results = []
-  for headline_item in headline_list:
-    author = headline_item.get('author')
-    title = headline_item.get('title')
-    description = headline_item.get('description')
-    url = headline_item.get('url')
-    urlToImage = headline_item.get('urlToImage')
-    publishedAt = headline_item.get('publishedAt')
-
-    headline_results.append(Headline(author,title,description,url,urlToImage,publishedAt))
-
-  return headline_list
-
-
-def headline_news(topic):
-  headline_news_url = 'https://newsapi.org/v2/top-headlines?apiKey={}&category={}'.format(api_key,topic)
-
-  with urllib.request.urlopen(headline_news_url) as url:
-    headline_news_data = url.read()
-    headline_news_response = json.loads(headline_news_data)
-
-    headline_news_results = None
-
-
-    if headline_news_response['articles']:
-      headline_news_list = headline_news_response['articles']
-      headline_news_results = process_headline_results(headline_news_list)
-
-  return headline_news_results
