@@ -23,8 +23,8 @@ As a user, you will be able to:
 
 ## Technologies Used
 
-Python
-Flask 
+  Python
+  Flask 
 
 ## BBD
 
@@ -47,11 +47,11 @@ $ python3.6 -m pip install Flask-Script
 
 ## Setting up ApiKey and Running the App
 
-!. Visit https://newsapi.org/ and register for an API key.
-2. Create a start.sh file in the projects rrot directory.
-3. Add "export NEWS_API_KEY='<your_api_key>'"  and python3.6 manage.py server in the file. 
-4. Make the file executable by running $ chmod a+x start.sh on the terminal
-5. Run application using $ ./start.sh
+  1. Visit https://newsapi.org/ and register for an API key.
+  2. Create a start.sh file in the projects rrot directory.
+  3. Add "export NEWS_API_KEY='<your_api_key>'"  and python3.6 manage.py server in the file. 
+  4. Make the file executable by running $ chmod a+x start.sh on the terminal
+  5. Run application using $ ./start.sh
 
 
 ## Contact Information
