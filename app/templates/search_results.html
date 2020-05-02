@@ -10,7 +10,7 @@
           <img src="{{news.urlToImage}}" alt="News photo" height="200px", width="350px">
           <a href="{{news.url}}"><h4><b>{{news.title}}</b></h4></a>
           <p><b>Written By:</b> {{ news.author }}</p>
-          <p><b>Published on: </b> {{ news.publishedAt}}</p>
+          <p><b>Published on: </b> {{ news.publishedAt | datetimeformat }}</p>
           <p>{{ news.description}}</p>
           <p><a href="{{news.url}}">Read More</a></p>
           <hr>

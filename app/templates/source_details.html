@@ -8,7 +8,9 @@
           <img src="{{article.urlToImage}}" alt="News photo" height="200px", width="350px">
           <a href="{{article.url}}"><h4><b>{{article.title}}</b></h4></a>
           <p><b>Written By:</b> {{ article.author }}</p>
-          <p><b>Published on: </b> {{ article.publishedAt}}</p>
+
+          <p><b>Published on: </b> {{ article.publishedAt | datetimeformat}}</p>
+
           <p>{{ article.description}}</p>
           <p><a href="{{article.url}}">Read More</a></p>
        </div>
@@ -20,4 +22,5 @@
       <h6>© 2020 Copyright: Muthoni Njuguna</h6>
     </div>
   </footer>
+
 {% endblock %}

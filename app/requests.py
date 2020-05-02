@@ -1,5 +1,6 @@
 import urllib.request,json
 from .models import Sources, Articles, Topic
+from datetime import date
 
 #Fetching the API Key
 api_key = None
@@ -90,10 +91,7 @@ def process_articles_results(articles_list):
 
     if urlToImage:
       article_object = Articles(author, title, description, publishedAt, content, url, urlToImage)
-    else: 
-      article_object = Articles(author, title, description, publishedAt, content, url)
-
-    site_results.append(article_object)
+      site_results.append(article_object)
 
   return site_results
  

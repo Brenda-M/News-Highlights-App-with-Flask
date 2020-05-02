@@ -7,12 +7,13 @@ from datetime import datetime
 
 
 @main.app_template_filter('datetimeformat')
-def datetimeformat(value, format='%B'):
+def datetimeformat(value):
   '''
   Formats dates to a more readable format 
 
   '''
-  return datetime_object.strftime ( format)
+  return  datetime.strptime(value, '%Y-%m-%dT%H:%M:%SZ').strftime('%m/%d/%Y')
+  
 
 @main.route('/')
 @main.route('/home')
@@ -44,7 +45,7 @@ def articles(id):
   if search_news:
     return redirect(url_for('main.search',topic = search_news))
   else:
-    return render_template('source_details.html',title=title,details=source_articles)
+    return render_template('source_details.html',title=title, details=source_articles)
 
 @main.route('/search/<topic>')
 def search(topic):
